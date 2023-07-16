@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://804acltpj0yh"]
+
+[ext_resource type="PackedScene" uid="uid://hxceukdb1o8n" path="res://Scenes/Characters/PlayerContainer.tscn" id="1_3fco6"]
+[ext_resource type="Script" path="res://Scenes/Game.gd" id="1_a2c1q"]
+[ext_resource type="PackedScene" uid="uid://ild45orp6mk5" path="res://Scenes/Train/TrainCar.tscn" id="1_a6xdg"]
+[ext_resource type="PackedScene" uid="uid://b4unlinctphds" path="res://Scenes/Biomes/Desert/DesertPlains.tscn" id="2_61433"]
+[ext_resource type="PackedScene" uid="uid://bmr3lbbqdiore" path="res://Scenes/Particles/BloodyMess.tscn" id="4_kri27"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vj05f"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wc25g"]
+
+[sub_resource type="Environment" id="Environment_sdg6g"]
+ambient_light_source = 3
+ambient_light_color = Color(0.984314, 0.984314, 0.658824, 1)
+ambient_light_energy = 0.5
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_u1whf"]
+exposure_multiplier = 1.4
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_a2c1q")
+
+[node name="TrainCar" parent="." instance=ExtResource("1_a6xdg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.942838, -0.0962956)
+
+[node name="TrainCar2" parent="." instance=ExtResource("1_a6xdg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.942824, -0.0962956)
+
+[node name="TrainCar3" parent="." instance=ExtResource("1_a6xdg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.942824, -0.0962956)
+
+[node name="TrainCar4" parent="." instance=ExtResource("1_a6xdg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, -0.942824, -0.0962956)
+
+[node name="PlayerContainer" parent="." instance=ExtResource("1_3fco6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.277158, 0)
+
+[node name="WorldFloorBoundary" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.483243, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldFloorBoundary"]
+shape = SubResource("WorldBoundaryShape3D_vj05f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.964007, 0.246458, 0.0997408, 8.39691e-09, -0.375141, 0.926968, 0.265876, 0.893604, 0.361638, -10.1104, 10.7721, -14.5622)
+light_energy = 1.152
+
+[node name="DesertPlains" parent="." instance=ExtResource("2_61433")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.171484, 0)
+
+[node name="DesertPlains2" parent="." instance=ExtResource("2_61433")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.171484, 0)
+
+[node name="DesertPlains3" parent="." instance=ExtResource("2_61433")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -0.171484, 0)
+
+[node name="KillZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.415697, 0.193868)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape3D_wc25g")
+
+[node name="BloodyMess" parent="." instance=ExtResource("4_kri27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.40406, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sdg6g")
+camera_attributes = SubResource("CameraAttributesPractical_u1whf")
+
+[node name="RabbitSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999391, 0.0348995, 0, -0.0348995, 0.999391, 0, 1.492, 2.717)
+projection = 2
+size = 1.897
+near = 2.077
+far = 10.0
+
+[connection signal="body_entered" from="KillZone" to="TrainCar" method="_on_kill_zone_body_entered"]
+[connection signal="timeout" from="RabbitSpawnTimer" to="." method="_on_rabbit_spawn_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmr3lbbqdiore"]
+
+[ext_resource type="Shader" path="res://Shaders/BloodyMess.gdshader" id="1_eeiib"]
+[ext_resource type="Script" path="res://Scenes/Particles/BloodyMess.gd" id="1_xr7s6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ioov"]
+render_priority = 0
+shader = ExtResource("1_eeiib")
+
+[sub_resource type="SphereMesh" id="SphereMesh_f2cgo"]
+material = SubResource("ShaderMaterial_8ioov")
+radius = 0.04
+height = 0.08
+radial_segments = 4
+rings = 2
+
+[sub_resource type="Curve" id="Curve_mmq4v"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.175824, 0.652632), 0.0, 0.0, 0, 0, Vector2(0.346154, 0.378947), 0.0, 0.0, 0, 0, Vector2(0.5, 0.305263), 0.0, 0.0, 0, 0, Vector2(0.714286, 0.210526), 0.0, 0.0, 0, 0, Vector2(0.868132, 0.157895), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[node name="BloodyMess" type="Node3D"]
+script = ExtResource("1_xr7s6")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.9
+mesh = SubResource("SphereMesh_f2cgo")
+direction = Vector3(0, 0, 1)
+spread = 90.0
+gravity = Vector3(-15, 0, 0)
+initial_velocity_max = 3.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_mmq4v")

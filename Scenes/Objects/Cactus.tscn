@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl1e6bxd1qebd"]
+
+[ext_resource type="Texture2D" uid="uid://cncwcdi5koxsh" path="res://Assets/Images/test-cactus.png" id="1_t44ep"]
+
+[node name="Cactus" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00125301, -1.49012e-08, -8.76188e-05)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0.201145, 0)
+double_sided = false
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_t44ep")

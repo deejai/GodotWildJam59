@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4unlinctphds"]
+
+[ext_resource type="Script" path="res://Scenes/Biomes/Desert/DesertPlains.gd" id="1_op8wt"]
+[ext_resource type="Shader" path="res://Shaders/DesertPlains.gdshader" id="2_dg88m"]
+[ext_resource type="PackedScene" uid="uid://cthch0takrps4" path="res://Scenes/Objects/TrainTracks.tscn" id="3_cl5mv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6jddd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y425a"]
+seamless = true
+noise = SubResource("FastNoiseLite_6jddd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxm2v"]
+render_priority = 0
+shader = ExtResource("2_dg88m")
+shader_parameter/scale = 10.0
+shader_parameter/height = 0.4
+shader_parameter/color1 = Vector3(0.7, 0.6, 0.2)
+shader_parameter/color2 = Vector3(0.9, 0.8, 0.4)
+shader_parameter/noise = SubResource("NoiseTexture2D_y425a")
+
+[sub_resource type="QuadMesh" id="QuadMesh_53agd"]
+lightmap_size_hint = Vector2i(102, 52)
+material = SubResource("ShaderMaterial_yxm2v")
+size = Vector2(20, 10)
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="DesertPlains" type="Node3D"]
+script = ExtResource("1_op8wt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.214735, 0.976672, 0, -0.976672, 0.214735, -0.254968, -0.356081, -1.0341)
+mesh = SubResource("QuadMesh_53agd")
+
+[node name="TrainTracks" type="Node3D" parent="."]
+
+[node name="TrainTracks1" parent="TrainTracks" instance=ExtResource("3_cl5mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.58931, -0.355874, -0.0262908)
+
+[node name="TrainTracks2" parent="TrainTracks" instance=ExtResource("3_cl5mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.24655, -0.355874, -0.0262908)
+
+[node name="TrainTracks3" parent="TrainTracks" instance=ExtResource("3_cl5mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90999, -0.355874, -0.0262908)
+
+[node name="TrainTracks4" parent="TrainTracks" instance=ExtResource("3_cl5mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41541, -0.355874, -0.0262908)
+
+[node name="TrainTracks5" parent="TrainTracks" instance=ExtResource("3_cl5mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73451, -0.355874, -0.0262908)
+
+[node name="TrainTracks6" parent="TrainTracks" instance=ExtResource("3_cl5mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.06555, -0.355874, -0.0262908)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://db1narma5oopb"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Player.gd" id="1_h2wpm"]
+[ext_resource type="Texture2D" uid="uid://bkbbxctlmal2i" path="res://icon.svg" id="2_xrhev"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q8vwl"]
+size = Vector3(0.2, 0.65, 0.1)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.369167, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+platform_on_leave = 2
+script = ExtResource("1_h2wpm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018004, 0)
+shape = SubResource("BoxShape3D_q8vwl")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.6, 0, 0, 0, 0.2, 0, 0.0165723, 0)
+texture = ExtResource("2_xrhev")

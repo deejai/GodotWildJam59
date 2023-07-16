@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://cthch0takrps4"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/TrainTracks.gd" id="1_v7el8"]
+[ext_resource type="Material" uid="uid://cgpwykweg4tu1" path="res://Materials/Wood.tres" id="2_5jysl"]
+[ext_resource type="Material" uid="uid://cqgbvmslo8umk" path="res://Materials/LightWood.tres" id="3_f4r8k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hjev8"]
+material = ExtResource("2_5jysl")
+size = Vector3(3.3, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xnqvc"]
+material = ExtResource("3_f4r8k")
+size = Vector3(0.1, 0.03, 0.85)
+
+[node name="TrainTracks" type="Node3D"]
+script = ExtResource("1_v7el8")
+
+[node name="TrackMeshBackground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_hjev8")
+
+[node name="TrackMeshForeground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_hjev8")
+
+[node name="Ties" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0258192, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54403, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19885, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.876713, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.531534, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17726, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167919, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.490059, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.835238, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17318, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Ties"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51836, 0, 0)
+mesh = SubResource("BoxMesh_xnqvc")

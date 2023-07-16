@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://sy5pn06hqfxq"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Rabbit.gd" id="1_h0dyx"]
+[ext_resource type="Texture2D" uid="uid://bwq8vfy6vviai" path="res://Assets/Images/optimized-rabbit-staring.png" id="2_xwtbk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lwbwe"]
+size = Vector3(0.40165, 0.309422, 1)
+
+[node name="Rabbit" type="RigidBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_h0dyx")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0377766, 0.21459, 0)
+alpha_cut = 1
+texture = ExtResource("2_xwtbk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035709, 0.159599, 0)
+shape = SubResource("BoxShape3D_lwbwe")
