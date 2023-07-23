@@ -12,7 +12,7 @@ func _process(delta):
 
 	spawn_timer -= delta
 
-	if spawn_timer <= 0.0:
+	if spawn_timer <= 0.0 and Main.game.rat_count < 10:
 		reset_spawn_timer()
 
 		var rat = Main.rat_scene.instantiate()

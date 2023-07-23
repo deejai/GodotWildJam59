@@ -19,7 +19,6 @@ enum MainQuestState {
 	RETURN_DUST_INGREDIENTS,
 	GIVE_DUST_TO_KARL,
 	KILL_THIRD_BATCH_RATS,
-	COMPLETE_THIRD_BATCH_RATS,
 	CHECK_ON_KARL,
 	OUTRO
 }
@@ -92,7 +91,7 @@ var quests = {
 	MainQuestState.KILL_SECOND_BATCH_RATS: {
 		"speaker": QuestSpeaker.NONE,
 		"speech": "",
-		"description": "Shoot another __COUNTER__ rats",
+		"description": "Shoot __COUNTER__ more rats",
 		"counter": 10,
 	},
 	MainQuestState.COMPLETE_SECOND_BATCH_RATS: {
@@ -128,18 +127,12 @@ var quests = {
 	MainQuestState.KILL_THIRD_BATCH_RATS: {
 		"speaker": QuestSpeaker.NONE,
 		"speech": "",
-		"description": "Shoot __COUNTER__ more rats",
+		"description": "Shoot __COUNTER__ extra rats",
 		"counter": 10,
-	},
-	MainQuestState.COMPLETE_THIRD_BATCH_RATS: {
-		"speaker": QuestSpeaker.NONE,
-		"speech": "",
-		"description": "Check on Karl",
-		"counter": 0,
 	},
 	MainQuestState.CHECK_ON_KARL: {
 		"speaker": QuestSpeaker.KARL,
-		"speech": "Oh crap! Looks like that dunedust did a number on Karl! I think it's up to me to take us the rest of the way...",
+		"speech": "Oh crap! Looks like that dunedust did a number on Karl! I think it's up to us to take it from here...",
 		"description": "Check on Karl",
 		"counter": 0,
 	},
@@ -171,8 +164,29 @@ func progress_main_quest():
 	quest_counter = quests[main_quest_state].counter
 	Main.game.hud.update_journal_details()
 
-	if main_quest_state >= MainQuestState.CHECK_ON_KARL:
-		Main.game.hud.hide_
+	if main_quest_state == MainQuestState.CHECK_ON_KARL:
+		Main.game.set_music_state(Game.MusicState.NONE)
+		Main.karl.pass_out()
+	elif main_quest_state == MainQuestState.OUTRO:
+		Main.game.you_win = true
+
+	# These are the checkpoints that you can restart from
+	if main_quest_state in [
+		MainQuestState.GET_FOOD_INGREDIENTS,
+		MainQuestState.RETURN_FOOD_INGREDIENTS,
+		MainQuestState.GIVE_FOOD_TO_KARL,
+		MainQuestState.ASK_HANK_ABOUT_WEED,
+		MainQuestState.GET_WEED_INGREDIENTS,
+		MainQuestState.RETURN_WEED_INGREDIENTS,
+		MainQuestState.GIVE_WEED_TO_KARL,
+		MainQuestState.KILL_SECOND_BATCH_RATS,
+		MainQuestState.COMPLETE_SECOND_BATCH_RATS,
+		MainQuestState.ASK_HANK_ABOUT_DUST,
+		MainQuestState.GET_DUST_INGREDIENTS,
+		MainQuestState.RETURN_DUST_INGREDIENTS,
+		MainQuestState.GIVE_DUST_TO_KARL,
+	]:
+		Main.continue_starting_point = main_quest_state
 
 func decrement_counter(amount: int = 1):
 	quest_counter -= amount

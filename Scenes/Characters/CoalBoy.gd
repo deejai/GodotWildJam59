@@ -17,6 +17,8 @@ var voice_cd_timer: float = 6.0
 
 @onready var camera_anchor: Node3D = $CameraAnchor
 
+@onready var passed_out_sprite: Sprite3D = $PassedOut
+
 var action_prompt: Utility.ActionPrompt = Utility.ActionPrompt.new(
 	"Talk to Karl",
 	5,
@@ -26,12 +28,14 @@ var action_prompt: Utility.ActionPrompt = Utility.ActionPrompt.new(
 var last_main_quest_state: QuestTracker.MainQuestState = QuestTracker.MainQuestState.INTRO
 
 func _ready():
-	pass
+	Main.karl = self
 
 
 func _process(delta: float):
+	if not Main.game.cinematic_mode:
+		voice_cd_timer -= delta
+
 	shovel_timer = fmod(shovel_timer + delta, shovel_interval)
-	voice_cd_timer -= delta
 
 	if shovel_timer < shovel_interval * 0.65:
 		arm_lower_foreground.apply_central_force(Vector3.RIGHT * -3.0)
@@ -47,7 +51,7 @@ func _process(delta: float):
 
 func _on_area_3d_body_entered(body):
 	if body is Player:
-		if voice_cd_timer <= 0.0:
+		if voice_cd_timer <= 0.0 and QuestTracker.main_quest_state < QuestTracker.MainQuestState.CHECK_ON_KARL:
 			voice_player.play()
 			voice_cd_timer = VOICE_CD + 0.5 * randf()
 
@@ -78,4 +82,4 @@ func pass_out():
 	for child in get_children():
 		child.visible = false
 
-	$PassedOut.visible = true
+	passed_out_sprite.visible = true

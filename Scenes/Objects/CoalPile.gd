@@ -25,6 +25,11 @@ func _process(delta):
 		return
 
 	coal_pct -= delta * CONSUMPTION_RATE
+	
+	if coal_pct <= 0.0:
+		if is_instance_valid(Main.player):
+			Main.player.queue_free()
+		Main.game.hud.fade_out = true
 
 	if coal_pct <= 1.0:
 		if state != State.NONE:

@@ -1,0 +1,158 @@
+[gd_scene load_steps=5 format=3 uid="uid://dewgwtdwav8t8"]
+
+[ext_resource type="Script" path="res://Scenes/PauseMenu.gd" id="1_6e36l"]
+[ext_resource type="Theme" uid="uid://d21lsuggx2v2h" path="res://Themes/Main.tres" id="2_my5vl"]
+[ext_resource type="ButtonGroup" uid="uid://co0dg7e7b8n0h" path="res://Scenes/SpeechSpeedButtonGroup.tres" id="3_qhfjg"]
+[ext_resource type="AudioStream" uid="uid://bkks2aark3457" path="res://Assets/Music/short_sad_violin.mp3" id="4_05ap5"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+layer = 50
+script = ExtResource("1_6e36l")
+
+[node name="PauseMenu" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 1168.0
+offset_bottom = 659.0
+theme = ExtResource("2_my5vl")
+color = Color(0.137255, 0.137255, 0.137255, 0.905882)
+
+[node name="ConfirmModal" type="ColorRect" parent="PauseMenu"]
+visible = false
+layout_mode = 0
+offset_right = 1188.0
+offset_bottom = 674.0
+color = Color(0.164706, 0.164706, 0.164706, 0.717647)
+
+[node name="ConfirmQuit" type="Button" parent="PauseMenu/ConfirmModal"]
+layout_mode = 0
+offset_left = 621.0
+offset_top = 278.0
+offset_right = 736.0
+offset_bottom = 367.0
+theme = ExtResource("2_my5vl")
+text = "Quit"
+
+[node name="CancelQuit" type="Button" parent="PauseMenu/ConfirmModal"]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 278.0
+offset_right = 561.0
+offset_bottom = 367.0
+theme = ExtResource("2_my5vl")
+text = "Nevermind"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/ConfirmModal"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 219.0
+offset_right = 797.0
+offset_bottom = 259.0
+theme = ExtResource("2_my5vl")
+text = "Are you sure you want to quit?"
+
+[node name="MainButtons" type="VBoxContainer" parent="PauseMenu"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 438.0
+offset_top = 219.0
+offset_right = 738.0
+offset_bottom = 419.0
+
+[node name="ReturnToGame" type="Button" parent="PauseMenu/MainButtons"]
+layout_mode = 2
+text = "Return to Game"
+
+[node name="RestartAtCheckpoint" type="Button" parent="PauseMenu/MainButtons"]
+visible = false
+layout_mode = 2
+text = "Restart at Checkpoint"
+
+[node name="Options" type="Button" parent="PauseMenu/MainButtons"]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="PauseMenu/MainButtons"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="OptionsButtons" type="VBoxContainer" parent="PauseMenu"]
+visible = false
+layout_mode = 0
+offset_left = 413.0
+offset_top = 221.0
+offset_right = 768.0
+offset_bottom = 370.0
+
+[node name="SpeechContainer" type="HBoxContainer" parent="PauseMenu/OptionsButtons"]
+layout_mode = 2
+
+[node name="SpeechLabel" type="Label" parent="PauseMenu/OptionsButtons/SpeechContainer"]
+layout_mode = 2
+text = "Speech Text "
+
+[node name="SlowCheckbox" type="CheckBox" parent="PauseMenu/OptionsButtons/SpeechContainer"]
+layout_mode = 2
+button_group = ExtResource("3_qhfjg")
+text = "Slow  "
+
+[node name="MediumCheckbox" type="CheckBox" parent="PauseMenu/OptionsButtons/SpeechContainer"]
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("3_qhfjg")
+text = "Medium  "
+
+[node name="FastCheckbox" type="CheckBox" parent="PauseMenu/OptionsButtons/SpeechContainer"]
+layout_mode = 2
+button_group = ExtResource("3_qhfjg")
+text = "Fast "
+
+[node name="VolumeContainer" type="HBoxContainer" parent="PauseMenu/OptionsButtons"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="PauseMenu/OptionsButtons/VolumeContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Panel" type="Panel" parent="PauseMenu/OptionsButtons/VolumeContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="PauseMenu/OptionsButtons/VolumeContainer/Panel"]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 276.0
+offset_bottom = 28.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Return" type="Button" parent="PauseMenu/OptionsButtons"]
+layout_mode = 2
+text = "Return"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 610.0
+offset_right = 969.0
+offset_bottom = 650.0
+text = "Hint: Grab coal from the caboose and bring it up to the front to refill the coal meter"
+
+[node name="TestSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_05ap5")
+volume_db = -6.0
+
+[connection signal="pressed" from="PauseMenu/ConfirmModal/ConfirmQuit" to="." method="_on_confirm_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/ConfirmModal/CancelQuit" to="." method="_on_cancel_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/MainButtons/ReturnToGame" to="." method="_on_return_to_game_pressed"]
+[connection signal="pressed" from="PauseMenu/MainButtons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PauseMenu/MainButtons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PauseMenu/OptionsButtons/SpeechContainer/SlowCheckbox" to="." method="_on_slow_checkbox_pressed"]
+[connection signal="pressed" from="PauseMenu/OptionsButtons/SpeechContainer/MediumCheckbox" to="." method="_on_medium_checkbox_pressed"]
+[connection signal="pressed" from="PauseMenu/OptionsButtons/SpeechContainer/FastCheckbox" to="." method="_on_fast_checkbox_pressed"]
+[connection signal="value_changed" from="PauseMenu/OptionsButtons/VolumeContainer/Panel/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="PauseMenu/OptionsButtons/Return" to="." method="_on_options_return_pressed"]

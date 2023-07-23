@@ -1,9 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://ild45orp6mk5"]
+[gd_scene load_steps=31 format=3 uid="uid://ild45orp6mk5"]
 
 [ext_resource type="Script" path="res://Scenes/Train/TrainCar.gd" id="1_lbvdd"]
 [ext_resource type="PackedScene" uid="uid://ekgr3d6nd6so" path="res://Scenes/Train/Wheel.tscn" id="2_ku5j2"]
 [ext_resource type="Material" uid="uid://c8a1hskwurfro" path="res://Materials/Iron.tres" id="3_r4gh2"]
 [ext_resource type="AudioStream" uid="uid://d2vgn4x8f0uf1" path="res://Assets/SFX/trainloop.mp3" id="4_0bf0w"]
+[ext_resource type="Texture2D" uid="uid://b1h3jao07dk54" path="res://Assets/Images/chair.png" id="5_5an1b"]
+[ext_resource type="Texture2D" uid="uid://vvyjyyt7fwa3" path="res://Assets/Images/robot1.png" id="6_oo4tj"]
+[ext_resource type="Texture2D" uid="uid://cxvvofgabsajs" path="res://Assets/Images/tombrandysitting.png" id="7_rw6uk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37dpl"]
 size = Vector3(4, 0.1, 1)
@@ -407,8 +410,56 @@ transform = Transform3D(1, 0, 0, 0, 0.999391, 0.0348995, 0, -0.0348995, 0.999391
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CarBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64238, 0)
 stream = ExtResource("4_0bf0w")
-volume_db = -20.0
+volume_db = -25.0
 autoplay = true
+
+[node name="Sprite3D" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.45544, 0.337303, -0.303017)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5an1b")
+
+[node name="Sprite3D2" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.266308, 0.337303, -0.303017)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5an1b")
+
+[node name="Sprite3D3" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.960991, 0.337303, -0.303017)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5an1b")
+
+[node name="Sprite3D4" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.849963, 0.337303, -0.303017)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5an1b")
+
+[node name="Sprite3D5" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.339165, 0.337303, -0.303017)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5an1b")
+
+[node name="Sprite3D6" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.56646, 0.337303, -0.303017)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5an1b")
+
+[node name="Robot" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.322087, 0.422282, -0.291022)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("6_oo4tj")
+
+[node name="Tombrandy" type="Sprite3D" parent="CarBody"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.930301, 0.50933, -0.291022)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("7_rw6uk")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -417,3 +468,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39175, 0)
 shape = SubResource("BoxShape3D_s5tre")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

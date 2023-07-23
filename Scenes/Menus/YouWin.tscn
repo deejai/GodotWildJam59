@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvc8py0qa0sv0"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/YouWin.gd" id="1_vlk44"]
+[ext_resource type="FontFile" uid="uid://cci28w052i5ma" path="res://Fonts/Amatic_SC/AmaticSC-Regular.ttf" id="2_7d76y"]
+
+[node name="YouWin" type="Node2D"]
+script = ExtResource("1_vlk44")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer"]
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+polygon = PackedVector2Array(-32, -21, -22, 704, 1256, 692, 1217, -80)
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+offset_left = 131.0
+offset_top = 49.0
+offset_right = 1012.0
+offset_bottom = 651.0
+theme_override_fonts/normal_font = ExtResource("2_7d76y")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Through your noble efforts, you manage to make it to Frontierado with Hank, Karl, and the other passengers safely
+
+Karl will need a few days before his next ride
+
+Thanks for daring to board the Frontier Express
+[/center]"

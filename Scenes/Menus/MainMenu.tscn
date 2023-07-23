@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlcdwdbyre6tx"]
+[gd_scene load_steps=11 format=3 uid="uid://dlcdwdbyre6tx"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/MainMenu.gd" id="1_sqw3r"]
 [ext_resource type="FontFile" uid="uid://dcn0kb86jynnf" path="res://Fonts/Amatic_SC/AmaticSC-Bold.ttf" id="2_rm3y3"]
 [ext_resource type="FontFile" uid="uid://cci28w052i5ma" path="res://Fonts/Amatic_SC/AmaticSC-Regular.ttf" id="3_iunwl"]
+[ext_resource type="Texture2D" uid="uid://cr6443km3hiyk" path="res://Assets/Images/test-coalboy-headbodylegs.png" id="4_pc2ek"]
+[ext_resource type="Texture2D" uid="uid://77ondl0xtmt2" path="res://Assets/Images/Hank.png" id="5_n5gyd"]
+[ext_resource type="Texture2D" uid="uid://c8aa2d6f1rd1" path="res://Assets/Images/player.png" id="6_18ao5"]
+[ext_resource type="Texture2D" uid="uid://x5s7bnq53h0h" path="res://Assets/Images/trainpic.png" id="7_5v0t0"]
 
 [sub_resource type="Gradient" id="Gradient_bcwn8"]
 colors = PackedColorArray(0.59841, 0.511061, 0.255912, 1, 1, 1, 0.407843, 1)
@@ -34,10 +38,10 @@ metadata/_edit_lock_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 26.0
-offset_top = -7.0
+offset_top = -40.0
 offset_right = 1133.0
-offset_bottom = 341.0
-theme_override_colors/default_color = Color(0.529412, 0.341176, 0, 0.384314)
+offset_bottom = 308.0
+theme_override_colors/default_color = Color(0.717647, 0.392157, 0, 0.65098)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_rm3y3")
 theme_override_font_sizes/normal_font_size = 240
@@ -45,10 +49,10 @@ bbcode_enabled = true
 text = "[center]Frontier Express[/center]"
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 387.0
-offset_top = 303.0
-offset_right = 813.0
-offset_bottom = 616.0
+offset_left = 359.0
+offset_top = 294.0
+offset_right = 785.0
+offset_bottom = 627.0
 theme_override_fonts/font = ExtResource("3_iunwl")
 theme_override_font_sizes/font_size = 48
 text = "I hereby declare
@@ -58,14 +62,48 @@ the Frontier Express
 x________"
 
 [node name="OptionsButton" type="Button" parent="."]
-offset_left = 29.0
+offset_left = 103.0
 offset_top = 559.0
-offset_right = 166.0
+offset_right = 240.0
 offset_bottom = 628.0
 theme_override_fonts/font = ExtResource("3_iunwl")
 theme_override_font_sizes/font_size = 48
 text = "Options
 "
 
+[node name="Continue" type="Button" parent="."]
+offset_left = 888.0
+offset_top = 559.0
+offset_right = 1132.0
+offset_bottom = 628.0
+theme_override_fonts/font = ExtResource("3_iunwl")
+theme_override_font_sizes/font_size = 48
+disabled = true
+text = " Load Checkpoint "
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(169, 371.5)
+texture = ExtResource("4_pc2ek")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(144, 413.5)
+texture = ExtResource("5_n5gyd")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(224, 424.5)
+texture = ExtResource("6_18ao5")
+flip_h = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(1011, 392)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_5v0t0")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(512, 602)
+points = PackedVector2Array(0, 0, 150, 0)
+width = 2.0
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]

@@ -142,3 +142,12 @@ offset_top = 574.0
 offset_right = 1156.0
 offset_bottom = 648.0
 texture = SubResource("GradientTexture2D_j0l40")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="BlackPoly" type="Polygon2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1.1995, -1.42879)
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+polygon = PackedVector2Array(-60.8589, 74.8885, -45.0189, -522.12, 1070.45, -509.522, 1051.27, 67.8896)

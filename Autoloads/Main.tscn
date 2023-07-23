@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxqed7q2aynag"]
+[gd_scene load_steps=3 format=3 uid="uid://bxqed7q2aynag"]
 
 [ext_resource type="Script" path="res://Autoloads/Main.gd" id="1_ay1pn"]
+[ext_resource type="PackedScene" uid="uid://dewgwtdwav8t8" path="res://Scenes/PauseMenu.tscn" id="2_p0823"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ay1pn")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_p0823")]

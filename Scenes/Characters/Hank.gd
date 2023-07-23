@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var intro_voice_player: AudioStreamPlayer3D = $IntroVoicePlayer
+
 @onready var voice_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 const VOICE_CD: float = 3.0
 var voice_cd_timer: float = 6.0
@@ -15,22 +17,24 @@ var action_prompt: Utility.ActionPrompt = Utility.ActionPrompt.new(
 var last_main_quest_state: QuestTracker.MainQuestState = QuestTracker.MainQuestState.INTRO
 
 func _ready():
-	pass
+	Main.hank = self
 
 
 func _process(delta):
-	pass
+	if not Main.game.cinematic_mode:
+		voice_cd_timer -= delta
 
 
 func _on_area_3d_body_entered(body):
 	if body is Player:
-		if voice_cd_timer <= 0.0:
-			voice_player.play()
-			voice_cd_timer = VOICE_CD + 0.5 * randf()
 
 		if not QuestTracker.did_hank_intro:
+			intro_voice_player.play()
 			Main.game.play_speech_sequence(QuestTracker.hank_intro_line, camera_anchor)
 			QuestTracker.did_hank_intro = true
+		elif voice_cd_timer <= 0.0:
+			voice_player.play()
+			voice_cd_timer = VOICE_CD + 0.5 * randf()
 
 		var current_quest = QuestTracker.quests[QuestTracker.main_quest_state]
 

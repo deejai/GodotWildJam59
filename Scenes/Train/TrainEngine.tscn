@@ -1,9 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://8q0sjtjusucp"]
+[gd_scene load_steps=43 format=3 uid="uid://8q0sjtjusucp"]
 
 [ext_resource type="Script" path="res://Scenes/Train/TrainEngine.gd" id="1_0fqix"]
 [ext_resource type="Script" path="res://Scenes/Train/TrainCar.gd" id="1_xuuo1"]
 [ext_resource type="PackedScene" uid="uid://c5o3lxxindnkn" path="res://Scenes/Train/EngineWheel.tscn" id="2_uoyi5"]
 [ext_resource type="Material" uid="uid://c8a1hskwurfro" path="res://Materials/Iron.tres" id="3_wjyvp"]
+[ext_resource type="Texture2D" uid="uid://b3lj6os55tjkl" path="res://Assets/Images/frog.png" id="5_5wn6o"]
 [ext_resource type="PackedScene" uid="uid://v26facqgaass" path="res://Scenes/Particles/Smog.tscn" id="5_f2vvl"]
 [ext_resource type="AudioStream" uid="uid://d2vgn4x8f0uf1" path="res://Assets/SFX/trainloop.mp3" id="6_fsgme"]
 
@@ -645,7 +646,7 @@ transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.4, -0.877916, -0.0713475
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.4, 0.569055, -0.0675526, 0.468143)
 
 [node name="EngineWheel3" parent="TrainCar/CarBody" instance=ExtResource("2_uoyi5")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.4, -0.877916, -0.0713475, -0.518492)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.4, -0.877916, -0.0713475, -0.523307)
 rot_mult = -1.0
 
 [node name="EngineWheel4" parent="TrainCar/CarBody" instance=ExtResource("2_uoyi5")]
@@ -715,6 +716,12 @@ transform = Transform3D(0.0748079, 0, 0, 0, 0.085, 0, 0, 0, 0.0748079, 1.3417, 1
 mesh = SubResource("ArrayMesh_83r21")
 skeleton = NodePath("")
 
+[node name="Sprite3D" type="Sprite3D" parent="TrainCar/CarBody/trainengine/Sphere_004"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0433617, 1.21199, 0.605068)
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_5wn6o")
+
 [node name="Torus_005" type="MeshInstance3D" parent="TrainCar/CarBody/trainengine"]
 transform = Transform3D(0.0565685, 0, 0.0565685, 0, 0.1, 0, -0.0565685, 0, 0.0565685, 1.34402, 0.77415, 0)
 mesh = SubResource("ArrayMesh_uickp")
@@ -737,7 +744,7 @@ shape = SubResource("BoxShape3D_2erlq")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TrainCar/CarBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64238, 0)
 stream = ExtResource("6_fsgme")
-volume_db = -20.0
+volume_db = -25.0
 autoplay = true
 
 [node name="Area3D" type="Area3D" parent="TrainCar"]
@@ -750,3 +757,4 @@ shape = SubResource("BoxShape3D_s5tre")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00285, 2.24162, -0.020678)
 
 [connection signal="body_entered" from="TrainCar/Area3D" to="TrainCar" method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="TrainCar/Area3D" to="TrainCar" method="_on_area_3d_body_exited"]

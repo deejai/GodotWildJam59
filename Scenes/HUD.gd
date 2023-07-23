@@ -14,6 +14,9 @@ extends CanvasLayer
 
 var time_passed: float = 0.0
 
+@onready var blackpoly: Polygon2D = $CanvasLayer/BlackPoly
+var fade_out: bool = false
+
 func _ready():
 	hide_speech()
 	update_journal_details()
@@ -27,6 +30,9 @@ func _process(delta):
 
 	skip_label.modulate.a = max(0.0, skip_label.modulate.a - delta)
 	coal_remaining_bar.value = Main.game.coal_pile.coal_pct
+
+	if fade_out:
+		blackpoly.modulate.a += 0.5 * delta
 
 func update_journal_details():
 	var progress = QuestTracker.main_quest_state

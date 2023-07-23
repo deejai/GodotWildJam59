@@ -12,7 +12,7 @@
 size = Vector3(0.26554, 0.661965, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_87g1p"]
-size = Vector3(0.599375, 0.716149, 1)
+size = Vector3(0.762434, 0.716149, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wova2"]
 render_priority = 0
@@ -42,12 +42,14 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.00512159, 0)
 visible = false
 flip_h = true
 alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("2_ruork")
 
 [node name="Sprite_BagEmpty" type="Sprite3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.00512159, 0)
 flip_h = true
 alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("3_sha6f")
 
 [node name="GunPlayer" type="AudioStreamPlayer3D" parent="."]

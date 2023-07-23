@@ -18,7 +18,9 @@ var action_prompt: Utility.ActionPrompt = Utility.ActionPrompt.new(
 	"Harvest Rat",
 	8,
 	func():
-		Main.game.play_speech_sequence("*squeeeeeeek*", camera_anchor)
+		Main.game.play_speech_sequence("*squeeeeeeek*", camera_anchor, 2.5)
+		Main.game.soften_music(2.5)
+		Main.game.short_sad_violin_player.play()
 		self.die = true
 		QuestTracker.decrement_counter()
 )
@@ -29,6 +31,8 @@ func reset_jump_timer():
 	jump_timer += randf_range(1.0, 3.0)
 
 func _ready():
+	Main.game.rat_count += 1
+
 	original_sprite_scale = sprite.scale
 	sprite.scale = original_sprite_scale * 0.01
 
@@ -66,11 +70,17 @@ func _process(delta):
 					Main.player.push_cd = 0.55
 
 func kill():
+	if Main.game.cinematic_mode:
+		self.die = true
+		return
+
 	var bloody_mess =  Main.bloody_mess_scene.instantiate()
 	bloody_mess.position = position
 	get_parent().add_child(bloody_mess)
 	if is_instance_valid(Main.player):
 		Main.player.remove_action_prompt(action_prompt)
+
+	Main.game.rat_count -= 1
 	queue_free()
 
 

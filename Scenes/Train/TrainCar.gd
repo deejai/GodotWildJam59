@@ -7,12 +7,19 @@ var next_impulse: float = 0.5 + randf()
 
 @export var music_theme: Game.MusicState
 
-# Called when the node enters the scene tree for the first time.
+@export var show_robot: bool = false
+
+@export var show_tombrandy: bool = false
+
 func _ready():
-	pass # Replace with function body.
+	var robot: Sprite3D = get_node_or_null("CarBody/Robot")
+	if robot:
+		robot.visible = show_robot
 
+	var tombrandy: Sprite3D = get_node_or_null("CarBody/Tombrandy")
+	if tombrandy:
+		tombrandy.visible = show_tombrandy
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	next_impulse -= delta
 	if next_impulse <= 0.0:
@@ -25,3 +32,9 @@ func _on_area_3d_body_entered(body):
 		print("switch")
 		Main.game.camera_focus_node = camera_anchor
 		Main.game.set_music_state(music_theme)
+
+
+func _on_area_3d_body_exited(body):
+	if body is Player:
+		body.push_cd = 1.0
+		print("Immune")

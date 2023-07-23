@@ -341,7 +341,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29659, 0.0447046, -0.18453
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TrainCar/CarBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64238, 0)
 stream = ExtResource("6_txxdf")
-volume_db = -20.0
+volume_db = -25.0
 autoplay = true
 
 [node name="Area3D" type="Area3D" parent="TrainCar"]
@@ -351,3 +351,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39175, 0)
 shape = SubResource("BoxShape3D_s5tre")
 
 [connection signal="body_entered" from="TrainCar/Area3D" to="TrainCar" method="_on_area_3d_body_entered" flags=18]
+[connection signal="body_exited" from="TrainCar/Area3D" to="TrainCar" method="_on_area_3d_body_exited"]

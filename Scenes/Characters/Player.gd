@@ -2,16 +2,15 @@ extends CharacterBody3D
 
 class_name Player
 
-const SPEED = 1.3
+const SPEED = 1.4
 const JUMP_VELOCITY = 2.5
 
 var look_dir: float = 1.0
 var has_moved: bool = false
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-const MAX_COYOTE_TIME: float = 0.1
+const MAX_COYOTE_TIME: float = 0.15
 var coyote_timer: float = 0.0
 var airborne: bool = true
 

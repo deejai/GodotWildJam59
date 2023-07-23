@@ -204,6 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.091, 1.744)
 
 [node name="PassedOut" type="Sprite3D" parent="."]
 transform = Transform3D(0.273124, 0.0616714, 0, 0.0451373, -0.1999, 0.190795, -0.0420235, 0.18611, 0.204932, 0.0337724, -0.249799, 0)
+visible = false
 texture = ExtResource("11_k1q01")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
