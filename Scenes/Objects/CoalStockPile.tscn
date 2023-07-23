@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch4eooiihvcp5"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/CoalStockPile.gd" id="1_6uk86"]
+[ext_resource type="Texture2D" uid="uid://cp2yehidpapvb" path="res://Assets/Images/coal_stockpile.png" id="1_cgdmu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ps31h"]
+size = Vector3(1.16582, 0.833081, 1)
+
+[node name="CoalStockPile" type="Node3D"]
+script = ExtResource("1_6uk86")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 43.565)
+alpha_cut = 1
+texture_filter = 1
+texture = ExtResource("1_cgdmu")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430152, 0)
+shape = SubResource("BoxShape3D_ps31h")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

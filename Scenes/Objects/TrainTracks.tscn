@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cthch0takrps4"]
+[gd_scene load_steps=12 format=3 uid="uid://cthch0takrps4"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/TrainTracks.gd" id="1_v7el8"]
 [ext_resource type="Material" uid="uid://cgpwykweg4tu1" path="res://Materials/Wood.tres" id="2_5jysl"]
 [ext_resource type="Material" uid="uid://cqgbvmslo8umk" path="res://Materials/LightWood.tres" id="3_f4r8k"]
+[ext_resource type="Shader" path="res://Shaders/Gravel.gdshader" id="4_2qoho"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hjev8"]
 material = ExtResource("2_5jysl")
@@ -11,6 +12,36 @@ size = Vector3(3.3, 0.1, 0.1)
 [sub_resource type="BoxMesh" id="BoxMesh_xnqvc"]
 material = ExtResource("3_f4r8k")
 size = Vector3(0.1, 0.03, 0.85)
+
+[sub_resource type="Gradient" id="Gradient_3xv25"]
+colors = PackedColorArray(0, 0, 0, 1, 0.340339, 0.340339, 0.340339, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x258e"]
+noise_type = 0
+frequency = 0.13
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2rokx"]
+seamless = true
+color_ramp = SubResource("Gradient_3xv25")
+noise = SubResource("FastNoiseLite_x258e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_to526"]
+render_priority = 0
+shader = ExtResource("4_2qoho")
+shader_parameter/uv_x_scale = 2.69231
+shader_parameter/offset_1 = 0.625
+shader_parameter/height_scale_1 = 0.055
+shader_parameter/bumpiness_freq_1 = 21.39
+shader_parameter/offset_2 = 2.21
+shader_parameter/height_scale_2 = 0.12
+shader_parameter/bumpiness_freq_2 = 0.01
+shader_parameter/noise = SubResource("NoiseTexture2D_2rokx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_on2wb"]
+material = SubResource("ShaderMaterial_to526")
+size = Vector2(3.5, 1.3)
+subdivide_width = 64
+subdivide_depth = 64
 
 [node name="TrainTracks" type="Node3D"]
 script = ExtResource("1_v7el8")
@@ -65,3 +96,7 @@ mesh = SubResource("BoxMesh_xnqvc")
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="Ties"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51836, 0, 0)
 mesh = SubResource("BoxMesh_xnqvc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.067837, 0)
+mesh = SubResource("QuadMesh_on2wb")

@@ -1,0 +1,144 @@
+[gd_scene load_steps=13 format=3 uid="uid://k6ded8c8cte7"]
+
+[ext_resource type="Script" path="res://Scenes/HUD.gd" id="1_6yjxu"]
+[ext_resource type="Theme" uid="uid://d21lsuggx2v2h" path="res://Themes/Main.tres" id="2_uloq8"]
+[ext_resource type="FontFile" uid="uid://dcn0kb86jynnf" path="res://Fonts/Amatic_SC/AmaticSC-Bold.ttf" id="3_gi7tp"]
+
+[sub_resource type="Gradient" id="Gradient_0incm"]
+colors = PackedColorArray(0.301961, 0.301961, 0.301961, 0.52549, 0.247059, 0.247059, 0.247059, 0.729412)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5eodl"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ofbse"]
+width = 256
+height = 32
+in_3d_space = true
+color_ramp = SubResource("Gradient_0incm")
+noise = SubResource("FastNoiseLite_5eodl")
+
+[sub_resource type="Gradient" id="Gradient_8r1tc"]
+colors = PackedColorArray(0.133333, 0.133333, 0.133333, 0.776471, 0.239216, 0.239216, 0.239216, 0.921569)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g82q8"]
+gradient = SubResource("Gradient_8r1tc")
+width = 256
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_4kay4"]
+offsets = PackedFloat32Array(0, 0.993548, 1)
+colors = PackedColorArray(0, 0, 0, 0.266667, 0.94902, 0.94902, 0.94902, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wddqq"]
+gradient = SubResource("Gradient_4kay4")
+fill = 1
+fill_from = Vector2(0.348624, 0)
+fill_to = Vector2(0.385321, 0.646789)
+
+[sub_resource type="Gradient" id="Gradient_ephkk"]
+offsets = PackedFloat32Array(0, 0.0381679, 0.96374, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.801527, 0.801527, 0.801527, 1, 0.941381, 0.941381, 0.941381, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j0l40"]
+gradient = SubResource("Gradient_ephkk")
+fill_from = Vector2(0.487179, 0.982906)
+fill_to = Vector2(0.482906, 0)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_6yjxu")
+
+[node name="Text" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text"]
+anchors_preset = -1
+anchor_left = 0.481
+anchor_top = 0.039
+anchor_right = 0.481
+anchor_bottom = 0.039
+offset_left = -118.112
+offset_top = -20.272
+offset_right = 117.888
+offset_bottom = 19.728
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(118.54, 20.11)
+theme = ExtResource("2_uloq8")
+bbcode_enabled = true
+text = "[center]Keep the Coal Coming![/center]"
+
+[node name="JournalHeader" type="RichTextLabel" parent="Text"]
+offset_left = 20.0
+offset_top = 7.0
+offset_right = 259.0
+offset_bottom = 56.0
+theme = ExtResource("2_uloq8")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Journal:"
+
+[node name="JournalDetails" type="RichTextLabel" parent="Text"]
+offset_left = 21.0
+offset_top = 48.0
+offset_right = 418.0
+offset_bottom = 199.0
+theme = ExtResource("2_uloq8")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[s]Do the first thing[/s]
+Do the thing with the stuff"
+
+[node name="Textures" type="CanvasLayer" parent="."]
+
+[node name="CoalRemainingBar" type="TextureProgressBar" parent="Textures"]
+offset_left = 427.0
+offset_top = 11.0
+offset_right = 683.0
+offset_bottom = 51.0
+texture_under = SubResource("NoiseTexture2D_ofbse")
+texture_progress = SubResource("GradientTexture2D_g82q8")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Textures"]
+offset_right = 348.0
+offset_bottom = 314.0
+texture = SubResource("GradientTexture2D_wddqq")
+
+[node name="Speech" type="Node" parent="."]
+
+[node name="SpeechText" type="CanvasLayer" parent="Speech"]
+layer = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Speech/SpeechText"]
+anchors_preset = -1
+anchor_left = -0.00954861
+anchor_right = 0.196181
+offset_left = 409.0
+offset_top = 591.0
+offset_right = 645.0
+offset_bottom = 631.0
+theme = ExtResource("2_uloq8")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "1234567890123456789012345678901234567890012345678"
+
+[node name="SkipLabel" type="RichTextLabel" parent="Speech/SpeechText"]
+offset_left = 130.0
+offset_top = 593.0
+offset_right = 296.0
+offset_bottom = 631.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_gi7tp")
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 24
+text = "Click Again to Skip"
+
+[node name="SpeechTextures" type="CanvasLayer" parent="Speech"]
+layer = 8
+
+[node name="TextureRect" type="TextureRect" parent="Speech/SpeechTextures"]
+offset_left = -3.0
+offset_top = 574.0
+offset_right = 1156.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_j0l40")

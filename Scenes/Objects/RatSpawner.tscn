@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp5ruee10s7yx"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/RatSpawner.gd" id="1_p1jw0"]
+
+[node name="RatSpawner" type="Node3D"]
+script = ExtResource("1_p1jw0")

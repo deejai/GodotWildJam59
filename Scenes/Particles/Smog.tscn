@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://v26facqgaass"]
+
+[ext_resource type="Shader" path="res://Shaders/Smog.gdshader" id="1_u73ks"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fky8g"]
+noise_type = 3
+fractal_octaves = 2
+fractal_gain = 0.58
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q6k6k"]
+noise = SubResource("FastNoiseLite_fky8g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8lxqx"]
+render_priority = 0
+shader = ExtResource("1_u73ks")
+shader_parameter/noise = SubResource("NoiseTexture2D_q6k6k")
+
+[sub_resource type="QuadMesh" id="QuadMesh_hqnmx"]
+material = SubResource("ShaderMaterial_8lxqx")
+size = Vector2(2, 1.75)
+subdivide_width = 4
+subdivide_depth = 4
+
+[sub_resource type="Curve" id="Curve_7chrn"]
+_data = [Vector2(0.00549451, 0), 0.0, 0.0, 0, 0, Vector2(0.153846, 0.105263), 0.0, 0.0, 0, 0, Vector2(0.340659, 0.178947), 0.0, 0.0, 0, 0, Vector2(0.472528, 0.305263), -0.112694, -0.112694, 0, 0, Vector2(0.631868, 0.484211), 0.0, 0.0, 0, 0, Vector2(0.752747, 0.6), 0.0, 0.0, 0, 0, Vector2(0.862637, 0.663158), 1.91579, 0.0, 0, 0, Vector2(0.945055, 0.747368), 0.0, 0.0, 0, 0, Vector2(1, 0.905263), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[node name="Smog" type="Node3D"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 6
+lifetime = 5.0
+mesh = SubResource("QuadMesh_hqnmx")
+direction = Vector3(0, 1, 0)
+spread = 10.0
+gravity = Vector3(0, 0.1, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+scale_amount_curve = SubResource("Curve_7chrn")

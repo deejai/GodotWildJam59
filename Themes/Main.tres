@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d21lsuggx2v2h"]
+
+[ext_resource type="FontFile" uid="uid://cci28w052i5ma" path="res://Fonts/Amatic_SC/AmaticSC-Regular.ttf" id="1_lkjxt"]
+
+[resource]
+default_font = ExtResource("1_lkjxt")
+default_font_size = 30

@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://c2rvfq6vmi134"]
+[gd_scene load_steps=6 format=3 uid="uid://c2rvfq6vmi134"]
+
+[ext_resource type="Shader" path="res://Shaders/Sky.gdshader" id="1_q6gu5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ypvv8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nwhr5"]
+seamless = true
+noise = SubResource("FastNoiseLite_ypvv8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka7ro"]
+render_priority = 0
+shader = ExtResource("1_q6gu5")
+shader_parameter/cloud_color = Vector3(1, 1, 1)
+shader_parameter/sky_color = Vector3(0.3, 0.6, 1)
+shader_parameter/cloud_cover = 0.5
+shader_parameter/cloud_sharpness = 3.0
+shader_parameter/scale = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_nwhr5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lewic"]
+material = SubResource("ShaderMaterial_ka7ro")
+size = Vector2(25, 25)
 
 [node name="Sky" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_lewic")

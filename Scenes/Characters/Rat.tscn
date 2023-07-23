@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://sy5pn06hqfxq"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Rat.gd" id="1_uin2s"]
+[ext_resource type="Texture2D" uid="uid://bd64b51cd40yk" path="res://Assets/Images/rat.png" id="2_5po4t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lwbwe"]
+size = Vector3(0.16476, 0.166524, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y77n1"]
+size = Vector3(0.678072, 0.6482, 1)
+
+[node name="Rat" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.1
+script = ExtResource("1_uin2s")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.00258292, 0.0591525, 0.006)
+flip_h = true
+alpha_cut = 1
+texture = ExtResource("2_5po4t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0820254, 0.056, 0)
+shape = SubResource("BoxShape3D_lwbwe")
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0752892, 0)
+shape = SubResource("BoxShape3D_y77n1")
+
+[node name="PushTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.047887, 0.49686)
+
+[connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

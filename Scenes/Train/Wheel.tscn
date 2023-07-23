@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ekgr3d6nd6so"]
+[gd_scene load_steps=9 format=3 uid="uid://ekgr3d6nd6so"]
 
 [ext_resource type="Script" path="res://Scenes/Train/Wheel.gd" id="1_sw1c3"]
 [ext_resource type="Texture2D" uid="uid://daqgk05auufiy" path="res://Assets/Images/test-wheel.png" id="2_kq5gy"]
@@ -62,7 +62,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ntqio")
 
+[sub_resource type="PrismMesh" id="PrismMesh_5mh8i"]
+material = ExtResource("3_sic8t")
+size = Vector3(0.15, 0.325, 0.015)
+
 [node name="Wheel" type="Node3D"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 script = ExtResource("1_sw1c3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -76,3 +81,7 @@ transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, -0.3, 0, 0.3, -1.31134e-08, 
 transform = Transform3D(1, 0, 0, 0, 0.29, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_yg53o")
 skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0.147184, -0.0114201)
+mesh = SubResource("PrismMesh_5mh8i")

@@ -1,27 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://hxceukdb1o8n"]
+[gd_scene load_steps=3 format=3 uid="uid://hxceukdb1o8n"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/PlayerContainer.gd" id="1_krcol"]
 [ext_resource type="PackedScene" uid="uid://db1narma5oopb" path="res://Scenes/Characters/Player.tscn" id="2_ylr85"]
-[ext_resource type="Texture2D" uid="uid://bkbbxctlmal2i" path="res://icon.svg" id="3_st56l"]
 
 [node name="PlayerContainer" type="Node3D"]
 script = ExtResource("1_krcol")
 
 [node name="Player" parent="." instance=ExtResource("2_ylr85")]
-
-[node name="LookPoint" type="Sprite3D" parent="."]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.84735, 0)
-visible = false
-texture = ExtResource("3_st56l")
-
-[node name="CameraFocus" type="Sprite3D" parent="."]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.84735, 0)
-visible = false
-modulate = Color(1, 0.145098, 0.227451, 1)
-texture = ExtResource("3_st56l")
-
-[node name="CameraNeck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.928997, -0.370087, 0, 0.370087, 0.928997, 0, 0.0473715, 1.72919)
-
-[node name="Camera3D" type="Camera3D" parent="CameraNeck"]
-transform = Transform3D(1, 0, 0, 0, 0.973074, 0.230491, 0, -0.230491, 0.973074, 0, 0.00421739, 0.010078)

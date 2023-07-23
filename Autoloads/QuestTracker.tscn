@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpvuqp018h1e8"]
+
+[ext_resource type="Script" path="res://Autoloads/QuestTracker.gd" id="1_wtv2d"]
+
+[node name="QuestTracker" type="Node2D"]
+script = ExtResource("1_wtv2d")

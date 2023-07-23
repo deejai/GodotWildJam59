@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmr3lbbqdiore"]
 
-[ext_resource type="Shader" path="res://Shaders/BloodyMess.gdshader" id="1_eeiib"]
-[ext_resource type="Script" path="res://Scenes/Particles/BloodyMess.gd" id="1_xr7s6"]
+[ext_resource type="Script" path="res://Scenes/Particles/BloodyMess.gd" id="1_d7px3"]
+[ext_resource type="Shader" path="res://Shaders/BloodyMess.gdshader" id="2_bbrou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ioov"]
 render_priority = 0
-shader = ExtResource("1_eeiib")
+shader = ExtResource("2_bbrou")
 
 [sub_resource type="SphereMesh" id="SphereMesh_f2cgo"]
 material = SubResource("ShaderMaterial_8ioov")
@@ -19,7 +19,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.175824, 0.652632), 0.0, 0.0, 0
 point_count = 7
 
 [node name="BloodyMess" type="Node3D"]
-script = ExtResource("1_xr7s6")
+script = ExtResource("1_d7px3")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 emitting = false

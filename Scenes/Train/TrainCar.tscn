@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://ild45orp6mk5"]
+[gd_scene load_steps=28 format=3 uid="uid://ild45orp6mk5"]
 
 [ext_resource type="Script" path="res://Scenes/Train/TrainCar.gd" id="1_lbvdd"]
 [ext_resource type="PackedScene" uid="uid://ekgr3d6nd6so" path="res://Scenes/Train/Wheel.tscn" id="2_ku5j2"]
 [ext_resource type="Material" uid="uid://c8a1hskwurfro" path="res://Materials/Iron.tres" id="3_r4gh2"]
+[ext_resource type="AudioStream" uid="uid://d2vgn4x8f0uf1" path="res://Assets/SFX/trainloop.mp3" id="4_0bf0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_37dpl"]
 size = Vector3(4, 0.1, 1)
@@ -11,7 +12,7 @@ size = Vector3(4, 0.1, 1)
 size = Vector3(4, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m2fdr"]
-size = Vector3(4, 1, 0.1)
+size = Vector3(2.74856, 1, 0.1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_r3qd6"]
 _surfaces = [{
@@ -322,9 +323,12 @@ size = Vector3(3.96776, 1, 1)
 
 [node name="TrainCar" type="Node3D"]
 script = ExtResource("1_lbvdd")
+music_theme = 4
 
 [node name="CarBody" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04413, 0)
+collision_layer = 5
+collision_mask = 5
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
@@ -332,7 +336,7 @@ axis_lock_angular_y = true
 mass = 1000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CarBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.239202, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00529552, 0)
 shape = SubResource("BoxShape3D_37dpl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CarBody"]
@@ -340,32 +344,35 @@ visible = false
 mesh = SubResource("BoxMesh_o4j2c")
 
 [node name="WheelLeftForeground" parent="CarBody" instance=ExtResource("2_ku5j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44785, -0.277006, 0.503517)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.44785, -0.206896, 0.503517)
 
 [node name="WheelLeftBackground" parent="CarBody" instance=ExtResource("2_ku5j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44785, -0.277006, -0.565039)
+transform = Transform3D(-0.75, 0, -6.55671e-08, 0, 0.75, 0, 6.55671e-08, 0, -0.75, -1.44785, -0.206896, -0.488629)
+rot_mult = -1.0
 
 [node name="WheelRightForeground" parent="CarBody" instance=ExtResource("2_ku5j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.448, -0.277006, 0.503517)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.448, -0.206896, 0.503517)
 
 [node name="WheelRightBackground" parent="CarBody" instance=ExtResource("2_ku5j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.448, -0.277006, -0.565039)
+transform = Transform3D(-0.75, 0, -6.55671e-08, 0, 0.75, 0, 6.55671e-08, 0, -0.75, 1.448, -0.206896, -0.488629)
+rot_mult = -1.0
 
 [node name="WheelMidForeground" parent="CarBody" instance=ExtResource("2_ku5j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.277006, 0.503517)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.206896, 0.503517)
 
 [node name="WheelMidBackground" parent="CarBody" instance=ExtResource("2_ku5j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.277006, -0.565039)
+transform = Transform3D(-0.75, 0, -6.55671e-08, 0, 0.75, 0, 6.55671e-08, 0, -0.75, 0, -0.206896, -0.488629)
+rot_mult = -1.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CarBody"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.531442, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.378102, 0)
 shape = SubResource("BoxShape3D_m2fdr")
 
 [node name="traincar" type="Node3D" parent="CarBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2528, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024158, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="CarBody/traincar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00915909, -2.38419e-07, 0.00702834)
+transform = Transform3D(0.996963, 0, 0, 0, 1.26632, 0, 0, 0, 0.996963, 0.00915909, -2.38419e-07, 0.00702834)
 mesh = SubResource("ArrayMesh_7ubya")
 skeleton = NodePath("")
 
@@ -394,12 +401,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431776, 0)
 mesh = SubResource("ArrayMesh_4ngr6")
 skeleton = NodePath("")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999391, 0.0348995, 0, -0.0348995, 0.999391, 0, 1.492, 2.717)
-projection = 2
-size = 1.897
-near = 2.077
-far = 10.0
+[node name="CameraAnchor" type="Node3D" parent="CarBody"]
+transform = Transform3D(1, 0, 0, 0, 0.999391, 0.0348995, 0, -0.0348995, 0.999391, 0, 0.553944, 2.74554)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CarBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64238, 0)
+stream = ExtResource("4_0bf0w")
+volume_db = -20.0
+autoplay = true
 
 [node name="Area3D" type="Area3D" parent="."]
 

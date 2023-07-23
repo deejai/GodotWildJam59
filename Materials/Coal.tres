@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ceb7684a3jbnj"]
+
+[ext_resource type="Shader" path="res://Shaders/Coal.gdshader" id="1_hl8cx"]
+
+[sub_resource type="Gradient" id="Gradient_85078"]
+colors = PackedColorArray(0, 0, 0, 1, 0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7e3fc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeavb"]
+seamless = true
+color_ramp = SubResource("Gradient_85078")
+noise = SubResource("FastNoiseLite_7e3fc")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_hl8cx")
+shader_parameter/bumpiness = 0.1
+shader_parameter/noise = SubResource("NoiseTexture2D_aeavb")

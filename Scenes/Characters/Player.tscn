@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://db1narma5oopb"]
+[gd_scene load_steps=12 format=3 uid="uid://db1narma5oopb"]
 
 [ext_resource type="Script" path="res://Scenes/Characters/Player.gd" id="1_h2wpm"]
-[ext_resource type="Texture2D" uid="uid://bkbbxctlmal2i" path="res://icon.svg" id="2_xrhev"]
+[ext_resource type="Texture2D" uid="uid://cbl4mxa5xmaj2" path="res://Assets/Images/player2.png" id="2_ruork"]
+[ext_resource type="Texture2D" uid="uid://bpb0i3quo2rfc" path="res://Assets/Images/gunshot.png" id="3_5bok1"]
+[ext_resource type="AudioStream" uid="uid://w36sxqb0nv5o" path="res://Assets/SFX/gun-shots-from-a-distance-7-96391.mp3" id="3_p5rfd"]
+[ext_resource type="Texture2D" uid="uid://blvkgwxjxkm56" path="res://Assets/Images/player1.png" id="3_sha6f"]
+[ext_resource type="FontFile" uid="uid://dcn0kb86jynnf" path="res://Fonts/Amatic_SC/AmaticSC-Bold.ttf" id="6_6u0j8"]
+[ext_resource type="Shader" path="res://Shaders/3D_Text_Prompt.gdshader" id="7_uu6ya"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q8vwl"]
-size = Vector3(0.2, 0.65, 0.1)
+size = Vector3(0.26554, 0.661965, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87g1p"]
+size = Vector3(0.599375, 0.716149, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wova2"]
+render_priority = 0
+shader = ExtResource("7_uu6ya")
+
+[sub_resource type="TextMesh" id="TextMesh_36b22"]
+material = SubResource("ShaderMaterial_wova2")
+text = "Press E to Drop off Coal"
+font = ExtResource("6_6u0j8")
+depth = 0.0
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.369167, 0)
@@ -16,9 +34,57 @@ platform_on_leave = 2
 script = ExtResource("1_h2wpm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018004, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024406, -0.0416545, 0)
 shape = SubResource("BoxShape3D_q8vwl")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.6, 0, 0, 0, 0.2, 0, 0.0165723, 0)
-texture = ExtResource("2_xrhev")
+[node name="Sprite_BagFull" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.00512159, 0)
+visible = false
+flip_h = true
+alpha_cut = 1
+texture = ExtResource("2_ruork")
+
+[node name="Sprite_BagEmpty" type="Sprite3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.00512159, 0)
+flip_h = true
+alpha_cut = 1
+texture = ExtResource("3_sha6f")
+
+[node name="GunPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_p5rfd")
+volume_db = -20.0
+
+[node name="GunshotSprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.236641, -0.133972, -0.025)
+visible = false
+alpha_cut = 1
+texture = ExtResource("3_5bok1")
+
+[node name="Area3D" type="Area3D" parent="GunshotSprite"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GunshotSprite/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.138929, 0)
+shape = SubResource("BoxShape3D_87g1p")
+
+[node name="ShowGunshotTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ShootCDTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ActionPrompt" type="MeshInstance3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0358411, 0.813106, 0)
+visible = false
+mesh = SubResource("TextMesh_36b22")
+skeleton = NodePath("../..")
+
+[connection signal="body_entered" from="GunshotSprite/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="GunshotSprite/Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="ShowGunshotTimer" to="." method="_on_show_gunshot_timer_timeout"]
+[connection signal="timeout" from="ShootCDTimer" to="." method="_on_shoot_cd_timer_timeout"]

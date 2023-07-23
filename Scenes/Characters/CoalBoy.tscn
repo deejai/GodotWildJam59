@@ -1,0 +1,210 @@
+[gd_scene load_steps=18 format=3 uid="uid://cvh1h0unrwegg"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/CoalBoy.gd" id="1_vaavj"]
+[ext_resource type="Texture2D" uid="uid://cv0trqrs5h1ub" path="res://Assets/Images/test-coalboy-arm-upper.png" id="2_1cxbv"]
+[ext_resource type="Texture2D" uid="uid://cq7gd3nvxb4if" path="res://Assets/Images/test-coalboy-arm-lower.png" id="3_wqww2"]
+[ext_resource type="Texture2D" uid="uid://er4bx3y7d3wy" path="res://Assets/Images/test-shovel.png" id="4_d4te0"]
+[ext_resource type="Texture2D" uid="uid://6ln1fewua0ne" path="res://Assets/Images/test-coalboy-arm-upper-background.png" id="4_pwc0j"]
+[ext_resource type="Texture2D" uid="uid://cr6443km3hiyk" path="res://Assets/Images/test-coalboy-headbodylegs.png" id="5_du4xu"]
+[ext_resource type="AudioStream" uid="uid://ck832ut00ndm4" path="res://Assets/Voice/Coalboy/arewegonnamakeit.mp3" id="7_yg8si"]
+[ext_resource type="AudioStream" uid="uid://7vce54thpifj" path="res://Assets/Voice/Coalboy/ijustgottakeeponshovelin.mp3" id="8_qacso"]
+[ext_resource type="AudioStream" uid="uid://ckkf3owl7u55g" path="res://Assets/Voice/Coalboy/keepbringinthecoalman.mp3" id="9_ot8oo"]
+[ext_resource type="AudioStream" uid="uid://cu3xamdarkhgv" path="res://Assets/Voice/Coalboy/oofyouscaredme.mp3" id="10_qkbe6"]
+[ext_resource type="Texture2D" uid="uid://b4jta1c81yu5d" path="res://Assets/Images/coalboy-passed-out.png" id="11_k1q01"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctnjv"]
+size = Vector3(0.160306, 0.0635847, 0.0361772)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vd05u"]
+size = Vector3(0.190351, 0.0442726, 0.0361772)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v0e07"]
+size = Vector3(0.345193, 0.0440137, 0.103181)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnt6u"]
+size = Vector3(0.214032, 0.0793094, 0.107198)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f2wmu"]
+size = Vector3(0.805, 0.785, 0.98)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d30s1"]
+streams_count = 4
+stream_0/stream = ExtResource("7_yg8si")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("8_qacso")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_ot8oo")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("10_qkbe6")
+stream_3/weight = 1.0
+
+[node name="CoalBoy" type="Node3D"]
+script = ExtResource("1_vaavj")
+
+[node name="ArmUpperForeground" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.0155852, 0.999878, 0, -0.999878, -0.0155852, 0, 0, 0, 1, -0.050425, 0.148015, 0)
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="ArmUpperForeground" type="Sprite3D" parent="ArmUpperForeground"]
+transform = Transform3D(-0.0563737, -0.274266, 0, 0.274266, -0.0563737, 0, 0, 0, 0.28, 0.017, 0, -0.02)
+offset = Vector2(0.885, -17.695)
+double_sided = false
+alpha_cut = 1
+texture_filter = 1
+texture = ExtResource("2_1cxbv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArmUpperForeground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0671147, -0.00182145, 0)
+shape = SubResource("BoxShape3D_ctnjv")
+
+[node name="ArmLowerForeground" type="RigidBody3D" parent="."]
+transform = Transform3D(0.929879, 0.367865, 0, -0.367865, 0.929879, 0, 0, 0, 1, -0.0351038, 0.0149327, 0)
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="ArmLowerForeground" type="Sprite3D" parent="ArmLowerForeground"]
+transform = Transform3D(0.215121, -0.177704, 0.0233286, 0.179229, 0.213379, -0.0273242, -0.000436434, 0.0359256, 0.277685, 0.014, -0.006, -0.015)
+offset = Vector2(22.74, -17.38)
+double_sided = false
+alpha_cut = 1
+texture_filter = 1
+texture = ExtResource("3_wqww2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArmLowerForeground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08711, -0.00364781, 0)
+shape = SubResource("BoxShape3D_vd05u")
+
+[node name="ArmUpperBackground" type="RigidBody3D" parent="."]
+transform = Transform3D(-0.233055, 0.972463, 0, -0.972463, -0.233055, 0, 0, 0, 1, 0.112563, 0.14669, -0.025)
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="ArmUpperBackground" type="Sprite3D" parent="ArmUpperBackground"]
+transform = Transform3D(-0.0640715, -0.272571, 0, 0.272571, -0.0640715, 0, 0, 0, 0.28, 0.018, 0.002, -0.045)
+offset = Vector2(0.575, -20.065)
+double_sided = false
+alpha_cut = 1
+texture_filter = 1
+texture = ExtResource("4_pwc0j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArmUpperBackground"]
+transform = Transform3D(1, -4.47035e-08, 0, 4.47035e-08, 1, 0, 0, 0, 1, 0.0753944, 0.00298452, 0)
+shape = SubResource("BoxShape3D_ctnjv")
+
+[node name="ArmLowerBackground" type="RigidBody3D" parent="."]
+transform = Transform3D(0.896084, -0.443885, 0, 0.443885, 0.896084, 0, 0, 0, 1, 0.0814774, 0.00606857, 0)
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="ArmLowerBackground" type="Sprite3D" parent="ArmLowerBackground"]
+transform = Transform3D(0.218435, -0.175175, 0, 0.175175, 0.218435, 0, 0, 0, 0.28, 0.014, -0.004, -0.05)
+offset = Vector2(21.16, -18.3)
+double_sided = false
+alpha_cut = 1
+texture_filter = 1
+texture = ExtResource("3_wqww2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArmLowerBackground"]
+transform = Transform3D(0.996723, 0.0808951, 0, -0.0808951, 0.996723, 0, 0, 0, 1, 0.0870687, -0.0100938, 0)
+shape = SubResource("BoxShape3D_vd05u")
+
+[node name="Shovel" type="RigidBody3D" parent="."]
+transform = Transform3D(0.759578, -0.650416, 0, 0.650416, 0.759578, 0, 0, 0, 1, 0.160811, -0.00081994, 0)
+collision_layer = 4
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+
+[node name="Shovel" type="Sprite3D" parent="Shovel"]
+transform = Transform3D(0.449979, -0.00431177, 0, 0.00431177, 0.449979, 0, 0, 0, 0.45, -0.0696489, -0.00548342, -0.03)
+offset = Vector2(32.03, 0)
+texture_filter = 1
+texture = ExtResource("4_d4te0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shovel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304468, -0.0049434, 0)
+shape = SubResource("BoxShape3D_v0e07")
+
+[node name="HeadBodyLegs" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HeadBodyLegs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0628712, 0.0985154, 0)
+shape = SubResource("BoxShape3D_fnt6u")
+
+[node name="HeadBodyLegs" type="Sprite3D" parent="HeadBodyLegs"]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0, 0, -0.045)
+double_sided = false
+alpha_cut = 1
+texture_filter = 1
+texture = ExtResource("5_du4xu")
+
+[node name="ShoulderForeground" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0491894, 0.136718, 0)
+node_a = NodePath("../HeadBodyLegs")
+node_b = NodePath("../ArmUpperForeground")
+
+[node name="ElbowForeground" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.050657, 0.00816076, 0)
+node_a = NodePath("../ArmUpperForeground")
+node_b = NodePath("../ArmLowerForeground")
+angular_limit/enable = true
+angular_limit/upper = -0.523599
+angular_limit/lower = -1.51146
+
+[node name="ShoulderBackground" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12018, 0.118771, 0)
+node_a = NodePath("../HeadBodyLegs")
+node_b = NodePath("../ArmUpperBackground")
+
+[node name="ElbowBackground" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0871818, 0.00368844, 0)
+node_a = NodePath("../ArmUpperBackground")
+node_b = NodePath("../ArmLowerBackground")
+angular_limit/enable = true
+angular_limit/upper = 1.76453
+angular_limit/lower = 0.865683
+
+[node name="HandForeground" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102471, -0.0550172, 0)
+node_a = NodePath("../ArmLowerForeground")
+node_b = NodePath("../Shovel")
+
+[node name="HandBackground" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225216, 0.0574098, 0)
+node_a = NodePath("../ArmLowerBackground")
+node_b = NodePath("../Shovel")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0303193, 0.111481, 0)
+shape = SubResource("BoxShape3D_f2wmu")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_d30s1")
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.091, 1.744)
+
+[node name="PassedOut" type="Sprite3D" parent="."]
+transform = Transform3D(0.273124, 0.0616714, 0, 0.0451373, -0.1999, 0.190795, -0.0420235, 0.18611, 0.204932, 0.0337724, -0.249799, 0)
+texture = ExtResource("11_k1q01")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

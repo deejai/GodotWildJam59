@@ -1,10 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://804acltpj0yh"]
+[gd_scene load_steps=21 format=3 uid="uid://804acltpj0yh"]
 
 [ext_resource type="PackedScene" uid="uid://hxceukdb1o8n" path="res://Scenes/Characters/PlayerContainer.tscn" id="1_3fco6"]
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_a2c1q"]
 [ext_resource type="PackedScene" uid="uid://ild45orp6mk5" path="res://Scenes/Train/TrainCar.tscn" id="1_a6xdg"]
 [ext_resource type="PackedScene" uid="uid://b4unlinctphds" path="res://Scenes/Biomes/Desert/DesertPlains.tscn" id="2_61433"]
+[ext_resource type="PackedScene" uid="uid://blluvrm0gacp4" path="res://Scenes/Train/TrainCaboose.tscn" id="3_7moeb"]
 [ext_resource type="PackedScene" uid="uid://bmr3lbbqdiore" path="res://Scenes/Particles/BloodyMess.tscn" id="4_kri27"]
+[ext_resource type="PackedScene" uid="uid://cvh1h0unrwegg" path="res://Scenes/Characters/CoalBoy.tscn" id="6_deaos"]
+[ext_resource type="PackedScene" uid="uid://8q0sjtjusucp" path="res://Scenes/Train/TrainEngine.tscn" id="7_uwv68"]
+[ext_resource type="PackedScene" uid="uid://c4hkljr3n63on" path="res://Scenes/Objects/CoalPile.tscn" id="8_jwdyy"]
+[ext_resource type="PackedScene" uid="uid://k6ded8c8cte7" path="res://Scenes/HUD.tscn" id="9_w5jvb"]
+[ext_resource type="PackedScene" uid="uid://c2rvfq6vmi134" path="res://Scenes/Biomes/Sky.tscn" id="10_yq2fn"]
+[ext_resource type="AudioStream" uid="uid://csska202qqub4" path="res://Assets/Music/ChuggaChugga.mp3" id="12_e2v6u"]
+[ext_resource type="AudioStream" uid="uid://bfyjhafcyelgo" path="res://Assets/Music/Hank_WasKarl.mp3" id="13_fx4mg"]
+[ext_resource type="PackedScene" uid="uid://bp5ruee10s7yx" path="res://Scenes/Objects/RatSpawner.tscn" id="13_xft6c"]
+[ext_resource type="AudioStream" uid="uid://bgbfi8636pibu" path="res://Assets/Music/Karl_WasHank.mp3" id="14_fm82v"]
+[ext_resource type="AudioStream" uid="uid://b82h8i41i4vmk" path="res://Assets/Music/Passenger Car.mp3" id="15_lgxie"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vj05f"]
 
@@ -18,23 +29,22 @@ ambient_light_energy = 0.5
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_u1whf"]
 exposure_multiplier = 1.4
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("starting_camera_focus_node", "coal_pile")]
 script = ExtResource("1_a2c1q")
-
-[node name="TrainCar" parent="." instance=ExtResource("1_a6xdg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.942838, -0.0962956)
+starting_camera_focus_node = NodePath("TrainEngine/TrainCar/CarBody/CameraAnchor")
+coal_pile = NodePath("CoalPile")
 
 [node name="TrainCar2" parent="." instance=ExtResource("1_a6xdg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.942824, -0.0962956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -1.09, -0.0335548)
 
 [node name="TrainCar3" parent="." instance=ExtResource("1_a6xdg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -0.942824, -0.0962956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -1.09, -0.0335548)
 
-[node name="TrainCar4" parent="." instance=ExtResource("1_a6xdg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, -0.942824, -0.0962956)
+[node name="TrainCaboose" parent="." instance=ExtResource("3_7moeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, -1.09, -0.0335548)
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_3fco6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.277158, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59652, 0.277158, 0)
 
 [node name="WorldFloorBoundary" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.483243, 0)
@@ -56,7 +66,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.171484, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -0.171484, 0)
 
 [node name="KillZone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.415697, 0.193868)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06204, -0.479436, 0.193868)
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape3D_wc25g")
@@ -68,15 +80,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.40406, 0)
 environment = SubResource("Environment_sdg6g")
 camera_attributes = SubResource("CameraAttributesPractical_u1whf")
 
-[node name="RabbitSpawnTimer" type="Timer" parent="."]
-autostart = true
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999391, 0.0348995, 0, -0.0348995, 0.999391, 0, 1.492, 2.717)
-projection = 2
+current = true
+fov = 48.9
 size = 1.897
-near = 2.077
-far = 10.0
+far = 20.0
 
-[connection signal="body_entered" from="KillZone" to="TrainCar" method="_on_kill_zone_body_entered"]
-[connection signal="timeout" from="RabbitSpawnTimer" to="." method="_on_rabbit_spawn_timer_timeout"]
+[node name="Sky" parent="Camera3D" instance=ExtResource("10_yq2fn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.334578, -9.58106)
+
+[node name="CoalBoy" parent="." instance=ExtResource("6_deaos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23952, 0.325979, 0)
+
+[node name="TrainEngine" parent="." instance=ExtResource("7_uwv68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.384565, -1.09319, 0)
+
+[node name="CoalPile" parent="." instance=ExtResource("8_jwdyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.953643, 0, 0.122072)
+
+[node name="HUD" parent="." instance=ExtResource("9_w5jvb")]
+
+[node name="MainTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_e2v6u")
+volume_db = -10.0
+autoplay = true
+
+[node name="HankThemeStem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_fx4mg")
+volume_db = -10.0
+autoplay = true
+
+[node name="KarlThemeStem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_fm82v")
+volume_db = -10.0
+autoplay = true
+
+[node name="PassengerThemeStem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_lgxie")
+volume_db = -10.0
+autoplay = true
+
+[node name="RatSpawner" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2536, 0.705088, -0.563815)
+
+[node name="RatSpawner2" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2823, 0.705088, -0.563815)
+
+[node name="RatSpawner3" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.01101, 0.705088, -0.563815)
+
+[node name="RatSpawner4" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.75163, 0.705088, -0.563815)
+
+[node name="RatSpawner5" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76382, 0.705088, -0.563815)
+
+[node name="RatSpawner6" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47272, 0.705088, -0.563815)
+
+[node name="RatSpawner7" parent="." instance=ExtResource("13_xft6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25565, 0.705088, -0.563815)
+
+[connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]

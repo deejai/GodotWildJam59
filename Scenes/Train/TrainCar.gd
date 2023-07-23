@@ -5,6 +5,8 @@ extends Node3D
 
 var next_impulse: float = 0.5 + randf()
 
+@export var music_theme: Game.MusicState
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,14 +17,11 @@ func _process(delta):
 	next_impulse -= delta
 	if next_impulse <= 0.0:
 		next_impulse += 0.3 + 0.8 * randf()
-		carbody.apply_impulse(Vector3.UP * randf_range(0.25, 0.55), Vector3(randf_range(-2.0, 2.0), 0.0, randf_range(-0.5, 0.5)))
-
-
-func _on_kill_zone_body_entered(body):
-	if body.has_method("kill"):
-		body.kill()
+		carbody.apply_impulse(Vector3.UP * randf_range(50.0, 100.0), Vector3(randf_range(-2.0, 2.0), 0.0, randf_range(-0.5, 0.5)))
 
 
 func _on_area_3d_body_entered(body):
 	if body is Player:
-		camera.make_current()
+		print("switch")
+		Main.game.camera_focus_node = camera_anchor
+		Main.game.set_music_state(music_theme)
